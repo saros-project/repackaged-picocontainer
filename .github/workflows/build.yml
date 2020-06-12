@@ -1,7 +1,8 @@
+name: Build
 on: [push]
 
 jobs:
-  publish-release:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,9 +14,6 @@ jobs:
         with:
           java-version: 8
 
-      - name: Publish artifact
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
         run: |
-          echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew publish
+          ./gradlew shadowJar
